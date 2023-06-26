@@ -36,7 +36,7 @@ const LoginPage = () => {
           history('/master');
         }
       } else {
-        return swal.fire('Неверный логин или пароль.')
+        swal.fire('Неверный логин или пароль.')
       }
     })
   }
