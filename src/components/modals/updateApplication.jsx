@@ -4,10 +4,22 @@ import TextField from '@mui/material//TextField';
 import MuiMenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material//Select';
 import axios from 'axios'
+import swal from 'sweetalert2';
 
 const UpdateApplicationModal = ({show, onHide}, props) => {
 
-    const actions = [
+    const actionsForMaster = [
+        {
+            "id_action": 3,
+            "name_action": "Выполнена"
+        },
+        {
+            "id_action": 4,
+            "name_action": "Не выполнена"
+        }
+    ]
+
+    const actionsForManager = [
         {
             "id_action": 1,
             "name_action": "Отменена"
@@ -27,39 +39,40 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
     ]
 
     const [inputValueAction, setInputValueAction] = useState('')
-    const [applications, setApplications] = useState([])
-    const application = {}
+    const [application, setApplication] = ([])
     const [inputValueComment, setInputValueComment] = useState('')
 
     const handleChangeAction = (event) => {
         setInputValueAction(event.target.value);
     };
 
-    useEffect(() => {
-        axios
-            .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/application/all')
-            .then(data => {
-                setApplications(data.data)
-            })
-    }, [])
+    function handleSubmit(){
+        var id = localStorage.getItem("Row")
+       axios.put("https://gringrodno-a57ffb08e075.herokuapp.com/api/application/update/"+id, {
+            comment: inputValueComment,
+            action: inputValueAction,
+        }).then((response) => {
+            console.log(response)
+        }).catch(err=>console.log(err));
+        swal.fire('Данные обновлены.', '', 'success')
+    };
 
-    const getApplication = () => {
-        for(let i = 0; i< applications.length; i++){
-            if(applications[i].id_application === localStorage.getItem("Row")){
-                application.push({
-                    "master": applications[i].name,
-                    "date": new Date(applications[i].data_application).getDate() + "-" + (new Date(applications[i].data_application).getMonth() + 1) + "-" + new Date(applications[i].data_application).getFullYear(),
-                    "time": applications[i].time,
-                    "address": applications[i].street + " д." + applications[i].house + " кв." + applications[i].flat,
-                    "phone": applications[i].phone_number,
-                    "task": applications[i].name_task,
-                    "action": applications[i].name_action,
-                    "comment_master": applications[i].comment_master
-                  })
-            }
-        }
-        return application
-    }
+    /* useEffect(()=>{
+        axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/api/application/"+localStorage.getItem("Row"))
+        .then(res=>{
+            application.push({
+                "master": res.data[0]?.name,
+                "date": new Date(res.data[0]?.data_application).getDate() + "-" + (new Date(res.data[0]?.data_application).getMonth() + 1) + "-" + new Date(res.data[0]?.data_application).getFullYear(),
+                "time": res.data[0]?.time,
+                "address": res.data[0]?.street + " д." + res.data[0]?.house + " кв." + res.data[0]?.flat,
+                "phone": res.data[0]?.phone_number,
+                "task": res.data[0]?.name_task,
+                "action": res.data[0]?.name_action,
+                "comment_master": res.data[0]?.comment_master
+              })
+        })
+        .catch(err=>console.log(err)); 
+    },[]) */
 
     return(
         (localStorage.getItem("role") === "Менеджер") ?
@@ -74,31 +87,31 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                             <div className={st.inputs1}>
                                 <div className={st.labelMaster}>
                                     <span>Мастер</span>
-                                    <span>{getApplication.master}</span>
+                                    <span></span>
                                 </div>
                                 <div className={st.labelAddress}>
                                     <span>Адрес</span>
-                                    <span>{getApplication.address}</span>
+                                    <span></span>
                                 </div>
                             </div>
                             <div className={st.inputs2}>
                                 <div className={st.labelData}>
                                     <span>Дата</span>
-                                    <span>{getApplication.date}</span>
+                                    <span></span>
                                 </div>
                                 <div className={st.labelTime}>
                                     <span>Время</span>
-                                    <span>{getApplication.time}</span>
+                                    <span></span>
                                 </div>
                             </div>
                             <div className={st.inputs3}>
                                 <div className={st.labelTask}>
                                     <span>Вид заявки</span>
-                                    <span>{getApplication.task}</span>
+                                    <span></span>
                                 </div>
                                 <div className={st.inputCommentMaster}>
                                     <span>Комментарий мастера</span>
-                                    <span>{getApplication.comment_master}</span>
+                                    <span></span>
                                 </div>
                             </div>
                         </div>
@@ -110,9 +123,74 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                                     onChange={handleChangeAction}
                                     id='inputAction'
                                 >
-                                    {actions.map(action =>
-                                        <MuiMenuItem value={action.name_action} key={action.id_action}>
-                                            {action.name_action}
+                                    {actionsForManager.map(action =>
+                                        <MuiMenuItem value={actionsForManager.name_action} key={actionsForManager.id_action}>
+                                            {actionsForManager.name_action}
+                                        </MuiMenuItem>) }
+                                </Select>
+                            </div>
+                            <div className={st.inputCommentManager}>
+                                <span>Комментарий менеджера</span>
+                                <TextField className={st.inputComm} value={inputValueComment}/> 
+                            </div>
+                        </div>
+                    </div>
+                    <div className={st.buttons}>
+                        <button onClick={handleSubmit}>Сохранить</button>
+                    </div>
+                </div>
+            </div>
+            ) : (
+                <div className={show ? (`${st.modal} ${st.active}`) : (`${st.modal}`)} onClick={() => onHide(false)}>
+                <div className={st.container} onClick={e => e.stopPropagation()}>
+                    <div className={st.caption}>
+                        <span>Редактирование заявки</span>
+                        <button className={st.btnClose} onClick={() => onHide(false)}>Х</button>
+                    </div>
+                    <div className={st.inputs}>
+                        <div className={st.labels}>
+                            <div className={st.inputs1}>
+                                <div className={st.labelMaster}>
+                                    <span>Мастер</span>
+                                    <span>{application.master}</span>
+                                </div>
+                                <div className={st.labelAddress}>
+                                    <span>Адрес</span>
+                                    <span>{application.address}</span>
+                                </div>
+                            </div>
+                            <div className={st.inputs2}>
+                                <div className={st.labelData}>
+                                    <span>Дата</span>
+                                    <span>{application.date}</span>
+                                </div>
+                                <div className={st.labelTime}>
+                                    <span>Время</span>
+                                    <span>{application.time}</span>
+                                </div>
+                            </div>
+                            <div className={st.inputs3}>
+                                <div className={st.labelTask}>
+                                    <span>Вид заявки</span>
+                                    <span>{application.task}</span>
+                                </div>
+                                <div className={st.inputCommentMaster}>
+                                    <span>Комментарий мастера</span>
+                                    <span>{application.comment_master}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={st.input}>
+                            <div className={st.inputAction}>
+                                <span>Статус</span>
+                                <Select
+                                    value={inputValueAction}
+                                    onChange={handleChangeAction}
+                                    id='inputAction'
+                                >
+                                    {actionsForManager.map(action =>
+                                        <MuiMenuItem value={actionsForManager.name_action} key={actionsForManager.id_action}>
+                                            {actionsForManager.name_action}
                                         </MuiMenuItem>) }
                                 </Select>
                             </div>
@@ -125,74 +203,6 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                     <div className={st.buttons}></div>
                 </div>
             </div>
-            ) : (
-                <div className={show ? (`${st.modal} ${st.active}`) : (`${st.modal}`)} onClick={() => onHide(false)}>
-                     <div className={st.container} onClick={e => e.stopPropagation()}>
-                    <div className={st.caption}>
-                        <span>Редактирование заявки</span>
-                        <button className={st.btnClose} onClick={() => onHide(false)}>Х</button>
-                    </div>
-                    <div className={st.inputs}>
-                        <div className={st.labels}>
-                            <div className={st.inputs1}>
-                                <div className={st.labelMaster}>
-                                    <span>Мастер</span>
-                                    <span>Перов Т.</span>
-                                </div>
-                                <div className={st.labelAddress}>
-                                    <span>Адрес</span>
-                                    <span>Томина д.12В кв.19</span>
-                                </div>
-                            </div>
-                            <div className={st.inputs2}>
-                                <div className={st.labelData}>
-                                    <span>Дата</span>
-                                    <span>12-6-2023</span>
-                                </div>
-                                <div className={st.labelTime}>
-                                    <span>Время</span>
-                                    <span>17-19</span>
-                                </div>
-                            </div>
-                            <div className={st.inputs3}>
-                                <div className={st.labelTask}>
-                                    <span>Вид заявки</span>
-                                    <span>Подкл. общего П.</span>
-                                </div>
-                                <div className={st.inputCommentManager}>
-                                    <span>Комментарий менеджера</span>
-                                    <span>Почини то или это</span>
-                                    {/* <TextField className={st.inputComm} value={inputValueComment} onChange={handleChangeComment}/> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className={st.input}>
-                            <div className={st.inputAction}>
-                                <span>Статус</span>
-                                <Select
-                                    value={inputValueAction}
-                                    onChange={handleChangeAction}
-                                    id='inputAction'
-                                >
-                                    {actions.map(action =>
-                                        <MuiMenuItem value={action.name_action} key={action.id_action}>
-                                            {action.name_action}
-                                        </MuiMenuItem>) }
-                                </Select>
-                                
-                            </div>
-                            <div className={st.inputCommentMaster}>
-                                <span>Комментарий мастера</span>
-                                
-                                {/* <TextField className={st.inputComm} value={inputValueComment} onChange={handleChangeComment}/> */}
-                            </div>
-                        </div>
-                    </div>
-                    <div className={st.buttons}>
-                        <button className={`${st.btnSave} ${st.btn}`}>Сохранить</button>
-                    </div>
-                </div>
-                </div>
             )
     )
 }

@@ -24,8 +24,8 @@
 }
 
 .logo img {
-    width: 138px;
-    height: 40px;
+    width: 188px;
+    height: 80px;
 }
 
 .exit{
@@ -48,6 +48,23 @@
     padding: 10px 32px 10px 32px;
     align-items: center;
 }
+
+.btn_stat{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #3513f4;
+    height: 44px;
+    width: 135px;
+    border-radius: 10px;
+    align-items: center;
+    font-family: Raleway;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    padding-left: 34px;
+}
+
 
 .btn_logout span{
     font-family: Raleway;

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import st from './login.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import swal from 'sweetalert2';
 
 const LoginPage = () => {
   
@@ -34,11 +35,8 @@ const LoginPage = () => {
         else if(user.role === "Мастер"){
           history('/master');
         }
-        else {
-          history('/');
-        }
       } else {
-        return { message: "Неправильно набран логин или пароль" }
+        return swal.fire('Неверный логин или пароль.')
       }
     })
   }

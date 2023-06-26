@@ -179,7 +179,7 @@ const DataTable = () => {
             pageSizeOptions={[5, 10]}
           />
         </div>
-        <UpdateApplicationModal show={modalVisible} onHide={setModalVisible} />
+        {/* <UpdateApplicationModal show={modalVisible} onHide={setModalVisible} /> */}
       </div>
     )
   } else {

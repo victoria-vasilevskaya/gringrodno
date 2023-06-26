@@ -86,11 +86,6 @@ form {
     width: 300px;
   }
   
-  button:before{
-    content: "\f002";
-    font-family: 'Open Sans';
-    color: #163BA4;
-  }
 
   ul.pagination {
     display: inline-block;

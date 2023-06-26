@@ -73,12 +73,7 @@ const columns = [
   {
     field: 'patronymic',
     headerName: 'patronymic',
-    width: 130
-  },
-  {
-    field: 'balance',
-    headerName: 'balance',
-    width: 70
+    width: 100
   }
 ];
 
@@ -96,7 +91,7 @@ const Abonents = (props) => {
   return (
     <div className={s.Abonents}>
       <div className={s.tableAbonent}>
-        <Box sx={{ height: 330, width: '103%' }}>
+        <Box sx={{ height: 330, width: '100s%' }}>
           <DataGrid
             rows={props.rows}
             columns={columns}

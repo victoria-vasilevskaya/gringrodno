@@ -19,10 +19,17 @@ const Header = () => {
 
     return (
         <div className={st.Header}>
-            <div className={st.logo}>
-                <a href="#"><img src={logo} alt="logo"></img></a>
+            <div className={st.logo}>{
+                (localStorage.getItem("role") === "Менеджер") ?(
+                    <a href="/journal"><img src={logo} alt="logo"></img></a>
+                ):(
+                    <a href="/master"><img src={logo} alt="logo"></img></a> 
+                )
+            }
+           
+                
             </div>
-            <Link to="/abonent-device">Статистика</Link>
+            <Link to="/abonent-device" className={st.btn_stat}>Статистика</Link>
             <div className={st.textUser}>{localStorage.getItem("role")+" "+localStorage.getItem("username")}</div>
             <button href="#" className={st.btn_logout} onClick={handleLogout}>
                 <span>Выйти</span>
