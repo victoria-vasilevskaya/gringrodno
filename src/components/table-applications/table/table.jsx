@@ -21,7 +21,7 @@ const DataTable = () => {
   
   useEffect(() => {
     axios
-        .get('localhost:5000/api/user/masters')
+        .get('http://localhost:5000/api/user/masters')
         .then(data => {
             setMasters(data.data)
         })
@@ -49,7 +49,7 @@ const DataTable = () => {
 
   useEffect(() => {
     axios
-        .get('localhost:5000/api/application/all')
+        .get('http://localhost:5000/api/application/all')
         .then(data => {
             setApplications(data.data)
         })

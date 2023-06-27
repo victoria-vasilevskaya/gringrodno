@@ -25,7 +25,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('localhost:5000/api/user/masters')
+            .get('http://localhost:5000/api/user/masters')
             .then(data => {
                 setMasters(data.data)
             })
@@ -33,7 +33,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('localhost:5000/api/address/all')
+            .get('http://localhost:5000/api/address/all')
             .then(data => {
                 setAddresses(data.data)
             })
@@ -41,7 +41,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('localhost:5000/api/address/streets')
+            .get('http://localhost:5000/api/address/streets')
             .then(data => {
                 setStreets(data.data)
             })
@@ -49,7 +49,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('localhost:5000/api/task/all')
+            .get('http://http://localhost:5000/api/task/all')
             .then(data => {
                 setTasks(data.data)
             })
@@ -57,7 +57,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('localhost:5000/api/application/all')
+            .get('http://localhost:5000/api/application/all')
             .then(data => {
                 setApplications(data.data)
             })

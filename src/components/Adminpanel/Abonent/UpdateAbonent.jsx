@@ -18,7 +18,7 @@ function UpdateAbonent(){
     const navigate =useNavigate();
 
     useEffect(()=>{
-        Axios.get('localhost:5000/admin-panel/address')
+        Axios.get('http://localhost:5000/admin-panel/address')
         .then(res=>setAddress(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -28,7 +28,7 @@ function UpdateAbonent(){
         value:address.id_address,label:address.street+" д."+address.house+" кв."+address.flat}})
 
     useEffect(()=>{
-        Axios.get("localhost:5000/admin-panel/abonent/update/"+id)
+        Axios.get("http://localhost:5000/admin-panel/abonent/update/"+id)
         .then(res=>{
             setAbonent(res.data);
             setSurname(res.data[0]?.surname);
@@ -41,7 +41,7 @@ function UpdateAbonent(){
     },[])
 
     function handleSubmit(){
-       Axios.put("localhost:5000/admin-panel/abonent/update/"+id, {
+       Axios.put("http://localhost:5000/admin-panel/abonent/update/"+id, {
             surname: surname,
             name: name,
             patronymic: patronymic,

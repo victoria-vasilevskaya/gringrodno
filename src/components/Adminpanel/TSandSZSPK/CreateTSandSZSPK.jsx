@@ -16,7 +16,7 @@ function CreateTSandSZSPK(){
     const navigate =useNavigate();
 
     function handleSubmit(){
-        Axios.post("localhost:5000/admin-panel/ts-szspk/create", {
+        Axios.post("http://localhost:5000/admin-panel/ts-szspk/create", {
             street: street,
             house: house,
             fio: fio,

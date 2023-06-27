@@ -22,7 +22,7 @@ function InputAddress(){
     let mas = Search(address);
     
    useEffect(()=>{
-        Axios.get('localhost:5000/admin-panel/address')
+        Axios.get('http://localhost:5000/admin-panel/address')
         .then(res=>{
             setAddress(res.data);
         })
@@ -50,7 +50,7 @@ function InputAddress(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/address/"+id)
+                    Axios.delete("http://localhost:5000/admin-panel/address/"+id)
                     window.location.reload()
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {
