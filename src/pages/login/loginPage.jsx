@@ -35,9 +35,10 @@ const LoginPage = () => {
         else if(user.role === "Мастер"){
           history('/master');
         }
-      } else {
+        else {
         swal.fire('Неверный логин или пароль.')
       }
+      } 
     })
   }
     
