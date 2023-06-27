@@ -21,7 +21,7 @@ function InputAbonent(){
     let mas = Search(abonent);
     
     useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/abonent')
+        Axios.get('localhost:5000/admin-panel/abonent')
         .then(res=>setAbonent(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -48,7 +48,7 @@ function InputAbonent(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/abonent/"+id)
+                    Axios.delete("localhost:5000/admin-panel/abonent/"+id)
                     window.location.reload()
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

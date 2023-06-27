@@ -25,7 +25,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/user/masters')
+            .get('localhost:5000/api/user/masters')
             .then(data => {
                 setMasters(data.data)
             })
@@ -33,7 +33,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/address/all')
+            .get('localhost:5000/api/address/all')
             .then(data => {
                 setAddresses(data.data)
             })
@@ -41,7 +41,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/address/streets')
+            .get('localhost:5000/api/address/streets')
             .then(data => {
                 setStreets(data.data)
             })
@@ -49,7 +49,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/task/all')
+            .get('localhost:5000/api/task/all')
             .then(data => {
                 setTasks(data.data)
             })
@@ -57,7 +57,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/application/all')
+            .get('localhost:5000/api/application/all')
             .then(data => {
                 setApplications(data.data)
             })
@@ -101,31 +101,6 @@ function ApplicationForm() {
             "time": "17-19"
         }
         ]
-        /* var tims = []
-        var dateAppli = ""
-        for(var i = 0; i < applications.length; i++){
-            if((new Date(applications[i].data_application).getMonth() + 1)<10 && (new Date(applications[i].data_application).getDate()<10)){
-                dateAppli = new Date(applications[i].data_application).getFullYear() + "-0" +(new Date(applications[i].data_application).getMonth() + 1) + "-0" + new Date(applications[i].data_application).getDate()
-              }
-              else if((new Date(applications[i].data_application).getMonth() + 1)<10){
-                dateAppli = new Date(applications[i].data_application).getFullYear() + "-0" +(new Date(applications[i].data_application).getMonth() + 1) + "-" + new Date(applications[i].data_application).getDate()
-              }
-              else if(new Date(applications[i].data_application).getDate()<10){
-                dateAppli = new Date(applications[i].data_application).getFullYear() + "-" +(new Date(applications[i].data_application).getMonth() + 1) + "-0" + new Date(applications[i].data_application).getDate()
-              }
-              
-            if(applications[i].name === master && dateAppli === date){
-                tims.push({"time":applications[i].time})
-            }
-        }
-        for(var i = 0; i < times.length; i++){
-            for(var j = 0; j<tims.length; j++){
-                if(times[i].time === tims[j].time){
-                    delete times[i]
-                }
-            }
-        }
-        localStorage.setItem("times", times) */
         return Array.from(new Set(times))
     }
      

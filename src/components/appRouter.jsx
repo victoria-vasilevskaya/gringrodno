@@ -20,7 +20,7 @@ const AppRouter = () =>{
   const[idabonent,setIdAbonent] = useState(0);
 
   useEffect(()=>{
-    Axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/abonent-device")
+    Axios.get("localhost:5000/abonent-device")
     .then((response) => {
       if(response)
       setData(response.data)    
@@ -33,7 +33,7 @@ const AppRouter = () =>{
   
 
   useEffect(()=>{
-    Axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/abonent-device/abonent-stats/"+id)
+    Axios.get("localhost:5000/abonent-device/abonent-stats/"+id)
     .then((response) => {
       if(response)
       setStat(response.data);

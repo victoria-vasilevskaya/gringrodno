@@ -21,7 +21,7 @@ function UpdateUser(){
             ];
 
     useEffect(()=>{
-        Axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/user/update/"+id)
+        Axios.get("localhost:5000/admin-panel/user/update/"+id)
         .then(res=>{
             setUser(res.data);
             setName(res.data[0]?.name);
@@ -33,7 +33,7 @@ function UpdateUser(){
         .catch(err=>console.log(err)); 
     },[])
     function handleSubmit(){
-       Axios.put("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/user/update/"+id, {
+       Axios.put("localhost:5000/admin-panel/user/update/"+id, {
         name: name,
         login: login,
         password: password,

@@ -22,7 +22,7 @@ function InputAddress(){
     let mas = Search(address);
     
    useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/address')
+        Axios.get('localhost:5000/admin-panel/address')
         .then(res=>{
             setAddress(res.data);
         })

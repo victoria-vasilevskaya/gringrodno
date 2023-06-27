@@ -22,7 +22,7 @@ function InputTSandSZSPK(){
     let mas = Search(tsandszspk);
     
     useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/ts-szspk')
+        Axios.get('localhost:5000/admin-panel/ts-szspk')
         .then(res=>setTSandSZSPK(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -48,7 +48,7 @@ function InputTSandSZSPK(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/ts-szspk/"+id)
+                    Axios.delete("localhost:5000/admin-panel/ts-szspk/"+id)
                     window.location.reload()
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

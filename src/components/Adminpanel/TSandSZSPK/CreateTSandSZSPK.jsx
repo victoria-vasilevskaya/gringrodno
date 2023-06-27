@@ -16,7 +16,7 @@ function CreateTSandSZSPK(){
     const navigate =useNavigate();
 
     function handleSubmit(){
-        Axios.post("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/ts-szspk/create", {
+        Axios.post("localhost:5000/admin-panel/ts-szspk/create", {
             street: street,
             house: house,
             fio: fio,

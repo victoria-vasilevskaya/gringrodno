@@ -24,7 +24,7 @@ function InputUser(){
     let mas = Search(user);
     
     useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/user')
+        Axios.get('localhost:5000/admin-panel/user')
         .then(res=>setUser(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -52,7 +52,7 @@ function InputUser(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/user/"+id)
+                    Axios.delete("localhost:5000/admin-panel/user/"+id)
                     window.location.reload()
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

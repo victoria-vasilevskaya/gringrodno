@@ -16,7 +16,7 @@ function CreateAbonent(){
     const [address,setAddress] =useState([])
     const navigate =useNavigate();
     useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/address')
+        Axios.get('localhost:5000/admin-panel/address')
         .then(res=>setAddress(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -26,7 +26,7 @@ function CreateAbonent(){
         value:address.id_address,label:address.street+" д."+address.house+" кв."+address.flat}})
         console.log(options);
     function handleSubmit(){
-        Axios.post("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/abonent/create", {
+        Axios.post("localhost:5000/admin-panel/abonent/create", {
             surname: surname,
             name: name,
             patronymic: patronymic,

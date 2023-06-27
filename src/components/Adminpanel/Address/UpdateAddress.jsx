@@ -13,7 +13,7 @@ function UpdateAddress(){
     const navigate =useNavigate();
 
     useEffect(()=>{
-        Axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/address/update/"+id)
+        Axios.get("localhost:5000/admin-panel/address/update/"+id)
         .then(res=>{
             setAddress(res.data);
             setStreet(res.data[0]?.street);

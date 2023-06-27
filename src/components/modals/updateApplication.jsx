@@ -48,7 +48,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
 
     function handleSubmit(){
         var id = localStorage.getItem("Row")
-       axios.put("https://gringrodno-a57ffb08e075.herokuapp.com/api/application/update/"+id, {
+       axios.put("localhost:5000/api/application/update/"+id, {
             comment: inputValueComment,
             action: inputValueAction,
         }).then((response) => {

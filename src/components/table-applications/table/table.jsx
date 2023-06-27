@@ -21,7 +21,7 @@ const DataTable = () => {
   
   useEffect(() => {
     axios
-        .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/user/masters')
+        .get('localhost:5000/api/user/masters')
         .then(data => {
             setMasters(data.data)
         })
@@ -49,7 +49,7 @@ const DataTable = () => {
 
   useEffect(() => {
     axios
-        .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/application/all')
+        .get('localhost:5000/api/application/all')
         .then(data => {
             setApplications(data.data)
         })

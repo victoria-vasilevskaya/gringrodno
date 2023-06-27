@@ -22,7 +22,7 @@ function InputDevice(){
     let mas = Search(device);
     
     useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/device')
+        Axios.get('localhost:5000/admin-panel/device')
         .then(res=>setDevice(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -49,7 +49,7 @@ function InputDevice(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/device/"+id)
+                    Axios.delete("localhost:5000/admin-panel/device/"+id)
                     window.location.reload()
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

@@ -18,7 +18,7 @@ function UpdateTSandSZSPK(){
     const navigate =useNavigate();
 
     useEffect(()=>{
-        Axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/ts-szspk/update/"+id)
+        Axios.get("localhost:5000/admin-panel/ts-szspk/update/"+id)
         .then(res=>{
             setTsandszspk(res.data);
             setStreet(res.data[0]?.street);
@@ -33,7 +33,7 @@ function UpdateTSandSZSPK(){
     },[])
 
     function handleSubmit(){
-       Axios.put("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/ts-szspk/update/"+id, {
+       Axios.put("localhost:5000/admin-panel/ts-szspk/update/"+id, {
             street: street,
             house: house,
             fio: fio,

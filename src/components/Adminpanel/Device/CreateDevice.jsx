@@ -22,7 +22,7 @@ function CreateDevice(){
     const navigate =useNavigate();
 
     useEffect(()=>{
-        Axios.get('https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/abonent')
+        Axios.get('localhost:5000/admin-panel/abonent')
         .then(res=>setAbonent(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -31,7 +31,7 @@ function CreateDevice(){
         value:abonent.id_abonent,label:abonent.surname+" "+abonent.name+" "+abonent.patronymic}})
 
     function handleSubmit(){
-        Axios.post("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/device/create", {
+        Axios.post("localhost:5000/admin-panel/device/create", {
             idlan: idlan,
             idabonent: idabonent,
             cmmac: cmmac,

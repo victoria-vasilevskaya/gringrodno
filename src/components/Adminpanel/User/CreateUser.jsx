@@ -21,7 +21,7 @@ function CreateUser(){
     
 
     function handleSubmit(){
-        Axios.post("https://gringrodno-a57ffb08e075.herokuapp.com/admin-panel/user/create", {
+        Axios.post("localhost:5000/admin-panel/user/create", {
             name: name,
             login: login,
             password: password,

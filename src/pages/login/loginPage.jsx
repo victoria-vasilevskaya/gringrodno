@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   useEffect(()=>{
     axios
-      .get('https://gringrodno-a57ffb08e075.herokuapp.com/api/user/all')
+      .get('localhost:5000/api/user/all')
       .then(data => {
         setUsers(data.data)
       })
