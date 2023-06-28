@@ -21,9 +21,9 @@ const Header = () => {
         <div className={st.Header}>
             <div className={st.logo}>{
                 (localStorage.getItem("role") === "Менеджер") ?(
-                    <a href="/journal"><img src={logo} alt="logo"></img></a>
+                    <Link to="/journal"><img src={logo} alt="logo"></img></Link>
                 ):(
-                    <a href="/master"><img src={logo} alt="logo"></img></a> 
+                    <Link to="/master"><img src={logo} alt="logo"></img></Link> 
                 )
             }
            
