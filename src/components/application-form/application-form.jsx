@@ -51,7 +51,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('http://http://localhost:5000/api/task/all')
+            .get('http://localhost:5000/api/task/all')
             .then(data => {
                 setTasks(data.data)
             })
