@@ -39,7 +39,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
     ]
 
     const [inputValueAction, setInputValueAction] = useState('')
-    const application = []
+    const [application, setApplication] = useState([])
     const [inputValueComment, setInputValueComment] = useState('')
 
     const handleChangeAction = (event) => {
@@ -60,16 +60,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
     useEffect(()=>{
         axios.get("http://localhost:5000/application/"+localStorage.getItem("Row"))
         .then(res=>{
-            application.push({
-                "master": res.data[0]?.name,
-                "date": new Date(res.data[0]?.data_application).getDate() + "-" + (new Date(res.data[0]?.data_application).getMonth() + 1) + "-" + new Date(res.data[0]?.data_application).getFullYear(),
-                "time": res.data[0]?.time,
-                "address": res.data[0]?.street + " д." + res.data[0]?.house + " кв." + res.data[0]?.flat,
-                "phone": res.data[0]?.phone_number,
-                "task": res.data[0]?.name_task,
-                "action": res.data[0]?.name_action,
-                "comment_master": res.data[0]?.comment_master
-              })
+            setApplication(res.data)
         })
         .catch(err=>console.log(err)); 
     },[])
@@ -87,17 +78,17 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                             <div className={st.inputs1}>
                                 <div className={st.labelMaster}>
                                     <span>Мастер</span>
-                                    <span>{application.master}</span>
+                                    <span>{application.name}</span>
                                 </div>
                                 <div className={st.labelAddress}>
                                     <span>Адрес</span>
-                                    <span>{application.address}</span>
+                                    <span>{application.street}+" "+{application.house} + " " + {application.flat}</span>
                                 </div>
                             </div>
                             <div className={st.inputs2}>
                                 <div className={st.labelData}>
                                     <span>Дата</span>
-                                    <span>{application.date}</span>
+                                    <span>{application.data_application}</span>
                                 </div>
                                 <div className={st.labelTime}>
                                     <span>Время</span>
@@ -107,7 +98,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                             <div className={st.inputs3}>
                                 <div className={st.labelTask}>
                                     <span>Вид заявки</span>
-                                    <span>{application.task}</span>
+                                    <span>{application.name_task}</span>
                                 </div>
                                 <div className={st.inputCommentMaster}>
                                     <span>Комментарий мастера</span>
