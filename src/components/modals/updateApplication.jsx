@@ -60,7 +60,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
     useEffect(()=>{
         axios.get("http://localhost:5000/application/"+localStorage.getItem("Row"))
         .then(res=>{
-            setApplication(res.data)
+            setApplication(res.data);
         })
         .catch(err=>console.log(err)); 
         
@@ -80,31 +80,31 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                             <div className={st.inputs1}>
                                 <div className={st.labelMaster}>
                                     <span>Мастер</span>
-                                    <span>{application.name}</span>
+                                    <span>{application[0]?.name}</span>
                                 </div>
                                 <div className={st.labelAddress}>
                                     <span>Адрес</span>
-                                    <span>{application.street}+" "+{application.house} + " " + {application.flat}</span>
+                                    <span>{application[0]?.street+" "+ application[0]?.house + " " + application[0]?.flat}</span>
                                 </div>
                             </div>
                             <div className={st.inputs2}>
                                 <div className={st.labelData}>
                                     <span>Дата</span>
-                                    <span>{application.data_application}</span>
+                                    <span>{application[0]?.data_application}</span>
                                 </div>
                                 <div className={st.labelTime}>
                                     <span>Время</span>
-                                    <span>{application.time}</span>
+                                    <span>{application[0]?.time}</span>
                                 </div>
                             </div>
                             <div className={st.inputs3}>
                                 <div className={st.labelTask}>
                                     <span>Вид заявки</span>
-                                    <span>{application.name_task}</span>
+                                    <span>{application[0]?.name_task}</span>
                                 </div>
                                 <div className={st.inputCommentMaster}>
                                     <span>Комментарий мастера</span>
-                                    <span>{application.comment_master}</span>
+                                    <span>{application[0]?.comment_master}</span>
                                 </div>
                             </div>
                         </div>
