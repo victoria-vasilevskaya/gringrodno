@@ -167,6 +167,7 @@ function ApplicationForm() {
             axios
                 .post("http://localhost:5000/api/application/create", application)
                 .then(
+                    navigate('/journal')
                 )
                 swal.fire('Заявка добавлена.', '', 'success')
         }
