@@ -63,10 +63,11 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
             setApplication(res.data)
         })
         .catch(err=>console.log(err)); 
-        console.log(application)
+        
     },[])
 
     return(
+        console.log(application),
         (localStorage.getItem("role") === "Менеджер") ?
             (<div className={show ? (`${st.modal} ${st.active}`) : (`${st.modal}`)} onClick={() => onHide(false)}>
                 <div className={st.container} onClick={e => e.stopPropagation()}>
