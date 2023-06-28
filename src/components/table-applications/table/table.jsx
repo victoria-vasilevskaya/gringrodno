@@ -19,6 +19,7 @@ const DataTable = () => {
   
   const [masters, setMasters] = useState([])
   
+  
   useEffect(() => {
     axios
         .get('http://localhost:5000/api/user/masters')
@@ -26,6 +27,23 @@ const DataTable = () => {
             setMasters(data.data)
         })
 }, [])
+
+  /* useEffect(() => {
+    axios.get("http://localhost:5000/application/" + localStorage.getItem("Row"))
+      .then(res => {
+        application.push({
+          "master": res.data[0]?.name,
+          "date": new Date(res.data[0]?.data_application).getDate() + "-" + (new Date(res.data[0]?.data_application).getMonth() + 1) + "-" + new Date(res.data[0]?.data_application).getFullYear(),
+          "time": res.data[0]?.time,
+          "address": res.data[0]?.street + " д." + res.data[0]?.house + " кв." + res.data[0]?.flat,
+          "phone": res.data[0]?.phone_number,
+          "task": res.data[0]?.name_task,
+          "action": res.data[0]?.name_action,
+          "comment_master": res.data[0]?.comment_master
+        })
+      })
+      .catch(err => console.log(err));
+  }, []) */
 
   const handleChangeMaster = (event) => {
     setInputValueMaster(event.target.value);

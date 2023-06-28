@@ -39,7 +39,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
     ]
 
     const [inputValueAction, setInputValueAction] = useState('')
-    const [application, setApplication] = ([])
+    const application = []
     const [inputValueComment, setInputValueComment] = useState('')
 
     const handleChangeAction = (event) => {
@@ -57,7 +57,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
         swal.fire('Данные обновлены.', '', 'success')
     };
 
-useEffect(()=>{
+    useEffect(()=>{
         axios.get("http://localhost:5000/application/"+localStorage.getItem("Row"))
         .then(res=>{
             application.push({
