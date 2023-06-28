@@ -57,10 +57,10 @@ const AppRouter = () =>{
     return( 
         <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route path="/journal" element={<Journal />} />
-            <Route path="/master" element={<MasterPage />} />
+            <Route path="/journal/*" element={<Journal />} />
+            <Route path="/master/*" element={<MasterPage />} />
             <Route path="/admin-panel/*" element={<AdminPanel />} />
-            <Route path='/abonent-device' element={[<Header/>,<Abonents rows = {data} idabonent={idAbonentChange} data={dataSet} />]} />
+            <Route path='/abonent-device/*' element={[<Header/>,<Abonents rows = {data} idabonent={idAbonentChange} data={dataSet} />]} />
             <Route path={'/abonent-device/device-stats/'+idabonent} element={[<Header />,<DeviceStatus data={date} idabonent={idabonent}/> ]} />
         </Routes>
     )
