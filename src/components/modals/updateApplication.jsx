@@ -48,13 +48,14 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
 
     function handleSubmit(){
         var id = localStorage.getItem("Row")
-       axios.put("http://localhost:5000/api/application/update/"+id, {
+        axios.put("http://localhost:5000/api/application/update/"+id, {
             comment: inputValueComment,
             action: inputValueAction,
         }).then((response) => {
             console.log(response)
         }).catch(err=>console.log(err));
         swal.fire('Данные обновлены.', '', 'success')
+        onHide(false)
     };
 
     useEffect(()=>{
