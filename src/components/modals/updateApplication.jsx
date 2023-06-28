@@ -57,8 +57,8 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
         swal.fire('Данные обновлены.', '', 'success')
     };
 
-    useEffect(()=>{
-        axios.get("https://localhost:5000/application/"+localStorage.getItem("Row"))
+useEffect(()=>{
+        axios.get("http://localhost:5000/application/"+localStorage.getItem("Row"))
         .then(res=>{
             application.push({
                 "master": res.data[0]?.name,

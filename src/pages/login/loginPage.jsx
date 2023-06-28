@@ -37,9 +37,7 @@ const LoginPage = () => {
         }
         
       }
-      else {
-        swal.fire('Неверный логин или пароль.')
-      } 
+
     })
   }
     
