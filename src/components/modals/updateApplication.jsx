@@ -130,7 +130,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                         </div>
                     </div>
                     <div className={st.buttons}>
-                        <button onClick={handleSubmit}>Сохранить</button>
+                        
                     </div>
                 </div>
             </div>
