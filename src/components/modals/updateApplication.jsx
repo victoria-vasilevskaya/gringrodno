@@ -46,7 +46,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
         setInputValueAction(event.target.value);
     };
 
-    function handleSubmit(){
+    /* function handleSubmit(){
         var id = localStorage.getItem("Row")
         axios.put("http://localhost:5000/api/application/update/"+id, {
             comment: inputValueComment,
@@ -56,7 +56,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
         }).catch(err=>console.log(err));
         swal.fire('Данные обновлены.', '', 'success')
         onHide(false)
-    };
+    }; */
 
     useEffect(()=>{
         axios.get("http://localhost:5000/application/"+localStorage.getItem("Row"))
