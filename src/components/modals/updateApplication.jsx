@@ -57,7 +57,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
         swal.fire('Данные обновлены.', '', 'success')
     };
 
-    /* useEffect(()=>{
+    useEffect(()=>{
         axios.get("https://gringrodno-a57ffb08e075.herokuapp.com/api/application/"+localStorage.getItem("Row"))
         .then(res=>{
             application.push({
@@ -72,7 +72,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
               })
         })
         .catch(err=>console.log(err)); 
-    },[]) */
+    },[])
 
     return(
         (localStorage.getItem("role") === "Менеджер") ?
@@ -87,31 +87,31 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                             <div className={st.inputs1}>
                                 <div className={st.labelMaster}>
                                     <span>Мастер</span>
-                                    <span></span>
+                                    <span>{application.master}</span>
                                 </div>
                                 <div className={st.labelAddress}>
                                     <span>Адрес</span>
-                                    <span></span>
+                                    <span>{application.address}</span>
                                 </div>
                             </div>
                             <div className={st.inputs2}>
                                 <div className={st.labelData}>
                                     <span>Дата</span>
-                                    <span></span>
+                                    <span>{application.date}</span>
                                 </div>
                                 <div className={st.labelTime}>
                                     <span>Время</span>
-                                    <span></span>
+                                    <span>{application.time}</span>
                                 </div>
                             </div>
                             <div className={st.inputs3}>
                                 <div className={st.labelTask}>
                                     <span>Вид заявки</span>
-                                    <span></span>
+                                    <span>{application.task}</span>
                                 </div>
                                 <div className={st.inputCommentMaster}>
                                     <span>Комментарий мастера</span>
-                                    <span></span>
+                                    <span>{application.comment_master}</span>
                                 </div>
                             </div>
                         </div>
@@ -124,8 +124,8 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                                     id='inputAction'
                                 >
                                     {actionsForManager.map(action =>
-                                        <MuiMenuItem value={actionsForManager.name_action} key={actionsForManager.id_action}>
-                                            {actionsForManager.name_action}
+                                        <MuiMenuItem value={action.name_action} key={action.id_action}>
+                                            {action.name_action}
                                         </MuiMenuItem>) }
                                 </Select>
                             </div>
@@ -188,9 +188,9 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
                                     onChange={handleChangeAction}
                                     id='inputAction'
                                 >
-                                    {actionsForManager.map(action =>
-                                        <MuiMenuItem value={actionsForManager.name_action} key={actionsForManager.id_action}>
-                                            {actionsForManager.name_action}
+                                    {actionsForMaster.map(action =>
+                                        <MuiMenuItem value={action.name_action} key={action.id_action}>
+                                            {action.name_action}
                                         </MuiMenuItem>) }
                                 </Select>
                             </div>
