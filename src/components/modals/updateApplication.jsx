@@ -58,7 +58,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
     };
 
     useEffect(()=>{
-        axios.get("https://localhost:5000/api/application/"+localStorage.getItem("Row"))
+        axios.get("https://localhost:5000/application/"+localStorage.getItem("Row"))
         .then(res=>{
             application.push({
                 "master": res.data[0]?.name,
