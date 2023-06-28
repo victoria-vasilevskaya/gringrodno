@@ -26,7 +26,7 @@ function UpdateDevice(){
         
 
     useEffect(()=>{
-        Axios.get('http://localhost:5000/admin-panel/abonent')
+        Axios.get('https://localhost:5000/admin-panel/abonent')
         .then(res=>setAbonent(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -35,7 +35,7 @@ function UpdateDevice(){
         value:abonent.id_abonent,label:abonent.surname+" "+abonent.name+" "+abonent.patronymic}})
 
     useEffect(()=>{
-        Axios.get("http://localhost:5000/admin-panel/device/update/"+id)
+        Axios.get("https://localhost:5000/admin-panel/device/update/"+id)
         .then(res=>{
             setDevice(res.data);
             setIdlan(res.data[0]?.id_lan);
@@ -56,7 +56,7 @@ function UpdateDevice(){
 
     function handleSubmit(){
         console.log(idlan);
-       Axios.put("http://localhost:5000/admin-panel/device/update/"+id, {
+       Axios.put("https://localhost:5000/admin-panel/device/update/"+id, {
         idlan: idlan,
         idabonent: idabonent,
         cmmac: cmmac,

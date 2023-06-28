@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   useEffect(()=>{
     axios
-      .get('http://localhost:5000/api/user/all')
+      .get('https://localhost:5000/api/user/all')
       .then(data => {
         setUsers(data.data)
       })

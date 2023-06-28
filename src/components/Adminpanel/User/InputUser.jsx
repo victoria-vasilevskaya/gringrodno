@@ -1,7 +1,7 @@
 import React,{useEffect, useState}from "react";
 import s from "../Module/Input.module.css";
 import Axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import swal from 'sweetalert2';
 
 
@@ -14,6 +14,7 @@ function InputUser(){
     const [userPerPage] = useState(5);
     const [query,setQuery]=useState("");
     let keys=["name","login","password","phone_number","post"]
+    const navigate = useNavigate()
     
     const Search = (data)=>{
         return data.filter(
@@ -24,7 +25,7 @@ function InputUser(){
     let mas = Search(user);
     
     useEffect(()=>{
-        Axios.get('http://localhost:5000/admin-panel/user')
+        Axios.get('https://localhost:5000/admin-panel/user')
         .then(res=>setUser(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -52,8 +53,8 @@ function InputUser(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("http://localhost:5000/admin-panel/user/"+id)
-                    window.location.reload()
+                    Axios.delete("https://localhost:5000/admin-panel/user/"+id)
+                    navigate('/admin-panel/user')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {
                   swal.fire('Удаление отменено', '', 'info')

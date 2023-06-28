@@ -1,7 +1,7 @@
 import React,{useEffect, useState}from "react";
 import s from "../Module/Input.module.css";
 import Axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from 'sweetalert2';
 
 function InputAddress(){
@@ -10,6 +10,7 @@ function InputAddress(){
     const [currentPage, setCurrentPage] = useState(1)
     const [addresPerPage] = useState(5);
     const [query,setQuery]=useState("");
+    const navigate = useNavigate()
 
     let keys=["street","house","flat"]
     
@@ -22,7 +23,7 @@ function InputAddress(){
     let mas = Search(address);
     
    useEffect(()=>{
-        Axios.get('http://localhost:5000/admin-panel/address')
+        Axios.get('https://localhost:5000/admin-panel/address')
         .then(res=>{
             setAddress(res.data);
         })
@@ -50,8 +51,8 @@ function InputAddress(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("http://localhost:5000/admin-panel/address/"+id)
-                    window.location.reload()
+                    Axios.delete("https://localhost:5000/admin-panel/address/"+id)
+                    navigate('/admin-panel/address')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {
                   swal.fire('Удаление отменено', '', 'info')

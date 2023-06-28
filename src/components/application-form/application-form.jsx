@@ -4,6 +4,7 @@ import MenuItem from '@mui/material//MenuItem';
 import Select from '@mui/material//Select';
 import TextField from '@mui/material//TextField';
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function ApplicationForm() {
 
@@ -16,6 +17,7 @@ function ApplicationForm() {
     const [inputValueTime, setInputValueTime] = useState('')
     const [inputValuePhone, setInputValuePhone] = useState('')
     const [inputValueComment, setInputValueComment] = useState('')
+    const navigate =useNavigate();
 
     const [masters, setMasters] = useState([])
     const [addresses, setAddresses] = useState([])
@@ -25,7 +27,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/api/user/masters')
+            .get('https://localhost:5000/api/user/masters')
             .then(data => {
                 setMasters(data.data)
             })
@@ -33,7 +35,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/api/address/all')
+            .get('https://localhost:5000/api/address/all')
             .then(data => {
                 setAddresses(data.data)
             })
@@ -41,7 +43,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/api/address/streets')
+            .get('https://localhost:5000/api/address/streets')
             .then(data => {
                 setStreets(data.data)
             })
@@ -49,7 +51,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('http://http://localhost:5000/api/task/all')
+            .get('https://http://localhost:5000/api/task/all')
             .then(data => {
                 setTasks(data.data)
             })
@@ -57,7 +59,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/api/application/all')
+            .get('https://localhost:5000/api/application/all')
             .then(data => {
                 setApplications(data.data)
             })
@@ -163,7 +165,9 @@ function ApplicationForm() {
             }
             axios
                 .post("http://localhost:5000/api/application/create", application)
-                .then()
+                .then(
+                    navigate("/journal")
+                )
             alert("Добавление прошло успешно")
         }
         else{

@@ -1,7 +1,7 @@
 import React,{useEffect, useState}from "react";
 import s from "../Module/Input.module.css";
 import Axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import swal from 'sweetalert2';
 
 function InputTSandSZSPK(){
@@ -12,6 +12,7 @@ function InputTSandSZSPK(){
     const [query,setQuery]=useState("");
     const keys=["street","house","fio","phone_number",
     "name_ts","compl_date","compens"]
+    const navigate = useNavigate();
 
     const Search = (data)=>{
         return data.filter(
@@ -22,7 +23,7 @@ function InputTSandSZSPK(){
     let mas = Search(tsandszspk);
     
     useEffect(()=>{
-        Axios.get('http://localhost:5000/admin-panel/ts-szspk')
+        Axios.get('https://localhost:5000/admin-panel/ts-szspk')
         .then(res=>setTSandSZSPK(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -48,8 +49,8 @@ function InputTSandSZSPK(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("http://localhost:5000/admin-panel/ts-szspk/"+id)
-                    window.location.reload()
+                    Axios.delete("https://localhost:5000/admin-panel/ts-szspk/"+id)
+                    navigate('/admin-panel/szspk')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {
                   swal.fire('Удаление отменено', '', 'info')

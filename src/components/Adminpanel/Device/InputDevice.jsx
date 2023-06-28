@@ -1,7 +1,7 @@
 import React,{useEffect, useState}from "react";
 import s from "../Module/Input.module.css";
 import Axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from 'sweetalert2';
 
 function InputDevice(){
@@ -12,6 +12,7 @@ function InputDevice(){
     const [query,setQuery]=useState("");
     const keys=["id_lan","id_abonent","cm_mac","cm_ip",
     "cpe_mac","cpe_ip","vpn_ip","vpn_login","vpn_pass","balance","cmts_ip"]
+    const navigate = useNavigate()
 
     const Search = (data)=>{
         return data.filter(
@@ -22,7 +23,7 @@ function InputDevice(){
     let mas = Search(device);
     
     useEffect(()=>{
-        Axios.get('http://localhost:5000/admin-panel/device')
+        Axios.get('https://localhost:5000/admin-panel/device')
         .then(res=>setDevice(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -49,8 +50,8 @@ function InputDevice(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("http://localhost:5000/admin-panel/device/"+id)
-                    window.location.reload()
+                    Axios.delete("https://localhost:5000/admin-panel/device/"+id)
+                    navigate('/admin-panel/device')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {
                   swal.fire('Удаление отменено', '', 'info')
