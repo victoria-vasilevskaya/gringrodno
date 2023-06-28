@@ -11,7 +11,7 @@ function CreateAddress(){
     const navigate =useNavigate();
 
     function handleSubmit(){
-        Axios.post("https://localhost:5000/admin-panel/address/create", {
+        Axios.post("http://localhost:5000/admin-panel/address/create", {
             street: street,
             house: house,
             flat: flat,

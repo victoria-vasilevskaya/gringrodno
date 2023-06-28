@@ -48,7 +48,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
 
     function handleSubmit(){
         var id = localStorage.getItem("Row")
-       axios.put("https://localhost:5000/api/application/update/"+id, {
+       axios.put("http://localhost:5000/api/application/update/"+id, {
             comment: inputValueComment,
             action: inputValueAction,
         }).then((response) => {

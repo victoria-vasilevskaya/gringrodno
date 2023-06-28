@@ -49,7 +49,7 @@ function InputAbonent(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://localhost:5000/admin-panel/abonent/"+id)
+                    Axios.delete("http://localhost:5000/admin-panel/abonent/"+id)
                     navigate('/admin-panel/abonent')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

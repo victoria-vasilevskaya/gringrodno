@@ -21,7 +21,7 @@ function UpdateUser(){
             ];
 
     useEffect(()=>{
-        Axios.get("https://localhost:5000/admin-panel/user/update/"+id)
+        Axios.get("http://localhost:5000/admin-panel/user/update/"+id)
         .then(res=>{
             setUser(res.data);
             setName(res.data[0]?.name);
@@ -33,7 +33,7 @@ function UpdateUser(){
         .catch(err=>console.log(err)); 
     },[])
     function handleSubmit(){
-       Axios.put("https://localhost:5000/admin-panel/user/update/"+id, {
+       Axios.put("http://localhost:5000/admin-panel/user/update/"+id, {
         name: name,
         login: login,
         password: password,

@@ -31,7 +31,7 @@ function CreateDevice(){
         value:abonent.id_abonent,label:abonent.surname+" "+abonent.name+" "+abonent.patronymic}})
 
     function handleSubmit(){
-        Axios.post("https://localhost:5000/admin-panel/device/create", {
+        Axios.post("http://localhost:5000/admin-panel/device/create", {
             idlan: idlan,
             idabonent: idabonent,
             cmmac: cmmac,

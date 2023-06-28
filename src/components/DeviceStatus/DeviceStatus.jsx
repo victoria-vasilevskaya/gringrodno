@@ -100,7 +100,7 @@ function DeviceStatus(props){
   const time = [];
 
   useEffect(() => {
-    Axios.get("https://localhost:5000/abonent-device/abonent-stats/" + id)
+    Axios.get("http://localhost:5000/abonent-device/abonent-stats/" + id)
       .then((response) => {
         setStat(response.data);
       })
@@ -109,7 +109,7 @@ function DeviceStatus(props){
   useEffect(() => {
     dataone = data1;
     datatwo = data2;
-    Axios.get("https://localhost:5000/abonent-device/abonent-stats/" + id + "/" + dataone + "/" + datatwo)
+    Axios.get("http://localhost:5000/abonent-device/abonent-stats/" + id + "/" + dataone + "/" + datatwo)
       .then((response) => {
         if (response)
           setStatDay(response.data)
@@ -117,7 +117,7 @@ function DeviceStatus(props){
   }, []);
 
   useEffect(() => {
-    Axios.get("https://localhost:5000/abonent-device/" + id)
+    Axios.get("http://localhost:5000/abonent-device/" + id)
       .then((response) => {
         if (response)
           setDevice(response.data)
@@ -128,7 +128,7 @@ function DeviceStatus(props){
   function statChart() {
     dataone = data1;
     datatwo = data2;
-    Axios.get("https://localhost:5000/abonent-device/abonent-stats/" + id + "/" + dataone + "/" + datatwo)
+    Axios.get("http://localhost:5000/abonent-device/abonent-stats/" + id + "/" + dataone + "/" + datatwo)
       .then((response) => {
         if (response)
           setStatDay(response.data)

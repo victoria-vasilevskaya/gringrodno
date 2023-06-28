@@ -25,7 +25,7 @@ function InputUser(){
     let mas = Search(user);
     
     useEffect(()=>{
-        Axios.get('https://localhost:5000/admin-panel/user')
+        Axios.get('http://localhost:5000/admin-panel/user')
         .then(res=>setUser(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -53,7 +53,7 @@ function InputUser(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://localhost:5000/admin-panel/user/"+id)
+                    Axios.delete("http://localhost:5000/admin-panel/user/"+id)
                     navigate('/admin-panel/user')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

@@ -23,7 +23,7 @@ function InputDevice(){
     let mas = Search(device);
     
     useEffect(()=>{
-        Axios.get('https://localhost:5000/admin-panel/device')
+        Axios.get('http://localhost:5000/admin-panel/device')
         .then(res=>setDevice(res.data))
         .catch(err=>console.log(err)); 
     },[])
@@ -50,7 +50,7 @@ function InputDevice(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://localhost:5000/admin-panel/device/"+id)
+                    Axios.delete("http://localhost:5000/admin-panel/device/"+id)
                     navigate('/admin-panel/device')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {

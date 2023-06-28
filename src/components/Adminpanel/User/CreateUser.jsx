@@ -21,7 +21,7 @@ function CreateUser(){
     
 
     function handleSubmit(){
-        Axios.post("https://localhost:5000/admin-panel/user/create", {
+        Axios.post("http://localhost:5000/admin-panel/user/create", {
             name: name,
             login: login,
             password: password,

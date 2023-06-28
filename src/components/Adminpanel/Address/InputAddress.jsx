@@ -23,7 +23,7 @@ function InputAddress(){
     let mas = Search(address);
     
    useEffect(()=>{
-        Axios.get('https://localhost:5000/admin-panel/address')
+        Axios.get('http://localhost:5000/admin-panel/address')
         .then(res=>{
             setAddress(res.data);
         })
@@ -51,7 +51,7 @@ function InputAddress(){
                 cancelButtonText:'Отмена',
               }).then((result) => {
                 if (result.value) {
-                    Axios.delete("https://localhost:5000/admin-panel/address/"+id)
+                    Axios.delete("http://localhost:5000/admin-panel/address/"+id)
                     navigate('/admin-panel/address')
                   swal.fire('Удалено', '', 'success')
                 } else if (!result.value) {
