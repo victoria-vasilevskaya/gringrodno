@@ -63,6 +63,7 @@ const UpdateApplicationModal = ({show, onHide}, props) => {
             setApplication(res.data)
         })
         .catch(err=>console.log(err)); 
+        console.log(application)
     },[])
 
     return(
